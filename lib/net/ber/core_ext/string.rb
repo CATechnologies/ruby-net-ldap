@@ -29,7 +29,7 @@ module Net::BER::Extensions::String
       # Strings should be UTF-8 encoded according to LDAP.
       # However, the BER code is not necessarily valid UTF-8
       begin
-        self.encode('UTF-8').force_encoding('ASCII-8BIT')
+        self.encode('UTF-8', invalid: :replace, undef: :replace, replace: '' ).force_encoding('ASCII-8BIT')
       rescue Encoding::UndefinedConversionError
         self
       end
